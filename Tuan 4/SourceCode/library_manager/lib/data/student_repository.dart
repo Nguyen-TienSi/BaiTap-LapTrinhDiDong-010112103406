@@ -3,6 +3,15 @@ import 'package:library_manager/model/book.dart';
 import 'package:library_manager/model/student.dart';
 
 class StudentRepository {
+  // Private constructor
+  StudentRepository._internal();
+
+  // Singleton instance
+  static final StudentRepository _instance = StudentRepository._internal();
+
+  // Factory constructor
+  factory StudentRepository() => _instance;
+
   final List<Student> _students = [
     Student(
       id: '1',
@@ -27,5 +36,18 @@ class StudentRepository {
 
   Student? getStudentById(String id) {
     return _students.firstWhereOrNull((student) => student.id == id);
+  }
+
+  void addStudent(Student student) => _students.add(student);
+
+  void updateStudent(Student updated) {
+    final index = _students.indexWhere((s) => s.id == updated.id);
+    if (index != -1) {
+      _students[index] = updated;
+    }
+  }
+
+  void removeStudent(Student student) {
+    _students.remove(student);
   }
 }

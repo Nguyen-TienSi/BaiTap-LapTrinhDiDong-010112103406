@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:library_manager/view/book_manager_screen.dart';
+import 'package:library_manager/view/manager_screen.dart';
 import 'package:library_manager/view/student_manager_screen.dart';
-
-import 'manager_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
