@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:library_manager/data/abstract_book_repository.dart';
 import 'package:library_manager/model/book.dart';
 import 'package:library_manager/data/book_repository.dart';
 import 'package:library_manager/view/create_book_screen.dart';
@@ -12,7 +13,7 @@ class BookManagerScreen extends StatefulWidget {
 }
 
 class _BookManagerScreenState extends State<BookManagerScreen> {
-  final BookRepository _bookRepository = BookRepository();
+  final AbstractBookRepository _bookRepository = BookRepository();
 
   void _navigateToCreateBook(BuildContext context) async {
     final newBook = await Navigator.of(context).push<Book>(

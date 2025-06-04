@@ -1,8 +1,9 @@
 import 'package:collection/collection.dart';
+import 'package:library_manager/data/abstract_student_repository.dart';
 import 'package:library_manager/model/book.dart';
 import 'package:library_manager/model/student.dart';
 
-class StudentRepository {
+class StudentRepository implements AbstractStudentRepository {
   // Private constructor
   StudentRepository._internal();
 
@@ -30,16 +31,20 @@ class StudentRepository {
     Student(id: '4', name: 'Phạm Thị D', borrowedBooks: []),
   ];
 
+  @override
   List<Student> getStudents() {
     return _students;
   }
 
+  @override
   Student? getStudentById(String id) {
     return _students.firstWhereOrNull((student) => student.id == id);
   }
 
+  @override
   void addStudent(Student student) => _students.add(student);
 
+  @override
   void updateStudent(Student updated) {
     final index = _students.indexWhere((s) => s.id == updated.id);
     if (index != -1) {
@@ -47,6 +52,7 @@ class StudentRepository {
     }
   }
 
+  @override
   void removeStudent(Student student) {
     _students.remove(student);
   }

@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:library_manager/data/abstract_book_repository.dart';
+import 'package:library_manager/data/abstract_student_repository.dart';
 import 'package:library_manager/data/book_repository.dart';
 import 'package:library_manager/data/student_repository.dart';
 import 'package:library_manager/model/student.dart';
@@ -11,8 +13,8 @@ class ManagerScreen extends StatefulWidget {
 }
 
 class _ManagerScreenState extends State<ManagerScreen> {
-  final BookRepository _bookRepository = BookRepository();
-  final StudentRepository _studentRepository = StudentRepository();
+  final AbstractBookRepository _bookRepository = BookRepository();
+  final AbstractStudentRepository _studentRepository = StudentRepository();
 
   Student? _selectedStudent;
 

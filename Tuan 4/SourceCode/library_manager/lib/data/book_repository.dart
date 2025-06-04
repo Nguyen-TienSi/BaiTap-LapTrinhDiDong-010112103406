@@ -1,7 +1,8 @@
 import 'package:collection/collection.dart';
+import 'package:library_manager/data/abstract_book_repository.dart';
 import 'package:library_manager/model/book.dart';
 
-class BookRepository {
+class BookRepository implements AbstractBookRepository {
   // Private constructor
   BookRepository._internal();
 
@@ -18,16 +19,20 @@ class BookRepository {
     Book(id: '4', title: 'Sách 04'),
   ];
 
+  @override
   List<Book> getBooks() {
     return _books;
   }
 
+  @override
   Book? getBookById(String id) {
     return _books.firstWhereOrNull((book) => book.id == id);
   }
 
+  @override
   void addBook(Book book) => _books.add(book);
 
+  @override
   void updateBook(Book updated) {
     final index = _books.indexWhere((s) => s.id == updated.id);
     if (index != -1) {
@@ -35,6 +40,7 @@ class BookRepository {
     }
   }
 
+  @override
   void removeBook(Book book) {
     _books.remove(book);
   }

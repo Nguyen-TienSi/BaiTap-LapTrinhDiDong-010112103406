@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:library_manager/data/abstract_student_repository.dart';
 import 'package:library_manager/model/student.dart';
 import 'package:library_manager/data/student_repository.dart';
 import 'package:library_manager/view/create_student_screen.dart';
@@ -12,7 +13,7 @@ class StudentManagerScreen extends StatefulWidget {
 }
 
 class _StudentManagerScreenState extends State<StudentManagerScreen> {
-  final StudentRepository _studentRepository = StudentRepository();
+  final AbstractStudentRepository _studentRepository = StudentRepository();
 
   void _navigateToCreateStudent(BuildContext context) async {
     final newStudent = await Navigator.of(context).push<Student>(
