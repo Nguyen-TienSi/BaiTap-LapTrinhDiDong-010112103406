@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class ProfileScreen extends StatelessWidget {
   final User? user = FirebaseAuth.instance.currentUser;
@@ -14,7 +15,7 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profile"),
+        title: const Text("Profile"),
         centerTitle: true,
         automaticallyImplyLeading: false,
       ),
@@ -24,33 +25,82 @@ class ProfileScreen extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 50,
-              backgroundImage: NetworkImage(photoURL ?? 'https://via.placeholder.com/150'),
+              backgroundImage: NetworkImage(
+                photoURL ?? 'https://via.placeholder.com/150',
+              ),
             ),
-            SizedBox(height: 10),
-            TextField(
-              readOnly: true,
-              decoration: InputDecoration(labelText: "Name", hintText: displayName),
+            const SizedBox(height: 16),
+            Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.person),
+                    title: Text(
+                      displayName,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: const Text("Name"),
+                  ),
+                  const Divider(),
+                  ListTile(
+                    leading: const Icon(Icons.email),
+                    title: Text(email),
+                    subtitle: const Text("Email"),
+                  ),
+                  const Divider(),
+                  ListTile(
+                    leading: const Icon(Icons.cake),
+                    title: const Text("23/05/1995"),
+                    subtitle: const Text("Date of Birth"),
+                  ),
+                ],
+              ),
             ),
-            TextField(
-              readOnly: true,
-              decoration: InputDecoration(labelText: "Email", hintText: email),
-            ),
-            TextField(
-              readOnly: true,
-              decoration: InputDecoration(labelText: "Date of Birth", hintText: "23/05/1995"),
-            ),
-            Spacer(),
-            ElevatedButton.icon(
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut();
-                if (context.mounted) {
-                  Navigator.of(context).pushReplacementNamed('/login');
-                }
-              },
-              icon: Icon(Icons.logout),
-              label: Text("Logout"),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
+            const Spacer(),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: () async {
+                  final shouldLogout = await showDialog<bool>(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text("Logout"),
+                      content: const Text("Are you sure you want to logout?"),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(context, false),
+                          child: const Text("Cancel"),
+                        ),
+                        TextButton(
+                          onPressed: () => Navigator.pop(context, true),
+                          child: const Text("Logout"),
+                        ),
+                      ],
+                    ),
+                  );
+                  if (shouldLogout == true) {
+                    await FirebaseAuth.instance.signOut();
+                    await GoogleSignIn().signOut();
+                    if (context.mounted) {
+                      Navigator.of(context).pushReplacementNamed('/login');
+                    }
+                  }
+                },
+                icon: const Icon(Icons.logout),
+                label: const Text("Logout"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  textStyle: const TextStyle(fontSize: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
               ),
             ),
           ],
