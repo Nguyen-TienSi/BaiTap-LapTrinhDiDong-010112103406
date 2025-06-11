@@ -6,11 +6,14 @@ class GridViewCountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('GridView.count Example')),
+      appBar: AppBar(title: const Text('GridView.count'), centerTitle: true),
       body: GridView.count(
-        crossAxisCount: 2, // số cột
-        crossAxisSpacing: 10, // khoảng cách ngang giữa các item
-        mainAxisSpacing: 10,  // khoảng cách dọc giữa các item
+        crossAxisCount: 2,
+        // số cột
+        crossAxisSpacing: 10,
+        // khoảng cách ngang giữa các item
+        mainAxisSpacing: 10,
+        // khoảng cách dọc giữa các item
         padding: const EdgeInsets.all(16),
         children: List.generate(8, (index) {
           return Container(

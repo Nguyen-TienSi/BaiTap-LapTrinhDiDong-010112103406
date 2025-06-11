@@ -13,12 +13,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: const GridViewHomeScreen());
+    return MaterialApp(home: const HomeScreen());
   }
 }
 
-class GridViewHomeScreen extends StatelessWidget {
-  const GridViewHomeScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,29 +30,33 @@ class GridViewHomeScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('GridView Navigation')),
-      body: GridView.count(
-        crossAxisCount: 2,
-        children: List.generate(screens.length, (index) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => screens[index]['widget'] as Widget),
-              );
-            },
-            child: Card(
-              margin: const EdgeInsets.all(16),
-              child: Center(
+      appBar: AppBar(
+        title: const Text('GridView Demo Menu'),
+        centerTitle: true,
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: screens.map((screen) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => screen['widget'] as Widget),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  screens[index]['title'] as String,
-                  textAlign: TextAlign.center,
+                  screen['title'] as String,
                   style: const TextStyle(fontSize: 18),
                 ),
               ),
             ),
           );
-        }),
+        }).toList(),
       ),
     );
   }

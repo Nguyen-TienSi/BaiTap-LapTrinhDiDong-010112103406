@@ -6,10 +6,11 @@ class GridViewExtentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('GridView.extent Example')),
+      appBar: AppBar(title: const Text('GridView.extent'), centerTitle: true),
       body: GridView.extent(
         padding: const EdgeInsets.all(16),
-        maxCrossAxisExtent: 150, // chiều rộng tối đa cho mỗi item
+        maxCrossAxisExtent: 150,
+        // chiều rộng tối đa cho mỗi item
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
         children: List.generate(12, (index) {

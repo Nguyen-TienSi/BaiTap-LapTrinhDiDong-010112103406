@@ -6,7 +6,7 @@ class GridViewCustomScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('GridView.custom Example')),
+      appBar: AppBar(title: const Text('GridView.custom'), centerTitle: true),
       body: GridView.custom(
         padding: const EdgeInsets.all(16),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -15,22 +15,19 @@ class GridViewCustomScreen extends StatelessWidget {
           mainAxisSpacing: 10,
           childAspectRatio: 1, // tỉ lệ width : height = 1:1
         ),
-        childrenDelegate: SliverChildBuilderDelegate(
-              (context, index) {
-            return Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.teal[100 * ((index % 8) + 1)],
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Text(
-                'Item ${index + 1}',
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-            );
-          },
-          childCount: 15,
-        ),
+        childrenDelegate: SliverChildBuilderDelegate((context, index) {
+          return Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Colors.teal[100 * ((index % 8) + 1)],
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text(
+              'Item ${index + 1}',
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          );
+        }, childCount: 15),
       ),
     );
   }

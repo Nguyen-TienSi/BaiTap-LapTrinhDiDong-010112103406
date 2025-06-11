@@ -6,14 +6,14 @@ class GridViewBuilderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('GridView.builder Example')),
+      appBar: AppBar(title: const Text('GridView.builder'), centerTitle: true),
       body: GridView.builder(
         padding: const EdgeInsets.all(16),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,         // Số cột
-          crossAxisSpacing: 12,      // Khoảng cách giữa các cột
-          mainAxisSpacing: 12,       // Khoảng cách giữa các dòng
-          childAspectRatio: 3 / 2,   // Tỉ lệ chiều rộng / chiều cao
+          crossAxisCount: 2, // Số cột
+          crossAxisSpacing: 12, // Khoảng cách giữa các cột
+          mainAxisSpacing: 12, // Khoảng cách giữa các dòng
+          childAspectRatio: 3 / 2, // Tỉ lệ chiều rộng / chiều cao
         ),
         itemCount: 10, // Số lượng item
         itemBuilder: (context, index) {
