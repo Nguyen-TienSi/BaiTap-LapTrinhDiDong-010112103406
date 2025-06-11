@@ -6,12 +6,15 @@ class SliverFillViewportScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('SliverFillViewport Example')),
+      appBar: AppBar(
+        title: const Text('SliverFillViewport Example'),
+        centerTitle: true,
+      ),
       body: CustomScrollView(
         slivers: [
           SliverFillViewport(
             delegate: SliverChildBuilderDelegate(
-                  (context, index) => Container(
+              (context, index) => Container(
                 color: Colors.primaries[index % Colors.primaries.length],
                 child: Center(
                   child: Text(

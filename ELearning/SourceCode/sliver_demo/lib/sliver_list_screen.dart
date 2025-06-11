@@ -11,13 +11,12 @@ class SliverListScreen extends StatelessWidget {
           const SliverAppBar(
             pinned: true,
             expandedHeight: 150.0,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text('SliverList Example'),
-            ),
+            flexibleSpace: FlexibleSpaceBar(title: Text('SliverList Example')),
+            centerTitle: true,
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-                  (context, index) => ListTile(
+              (context, index) => ListTile(
                 leading: CircleAvatar(child: Text('${index + 1}')),
                 title: Text('Item ${index + 1}'),
                 subtitle: const Text('Subtitle'),

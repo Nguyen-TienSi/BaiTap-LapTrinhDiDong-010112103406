@@ -6,24 +6,35 @@ class SliverToBoxAdapterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('SliverToBoxAdapter Example')),
+      appBar: AppBar(
+        title: const Text('SliverToBoxAdapter Example'),
+        centerTitle: true,
+      ),
       body: CustomScrollView(
         slivers: [
-          const SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Text(
-                'Header Section',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) => ListTile(title: Text('Top Item $index')),
+              childCount: 5,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              margin: const EdgeInsets.symmetric(vertical: 16),
+              padding: const EdgeInsets.all(24),
+              color: Colors.amber,
+              child: const Center(
+                child: Text(
+                  'This is a box inside slivers!',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-                  (context, index) => ListTile(
-                title: Text('List Item $index'),
-              ),
-              childCount: 15,
+              (context, index) => ListTile(title: Text('Bottom Item $index')),
+              childCount: 5,
             ),
           ),
         ],

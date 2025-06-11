@@ -6,15 +6,35 @@ class SliverFillRemainingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('SliverFillRemaining Example')),
+      appBar: AppBar(
+        title: const Text('SliverFillRemaining Example'),
+        centerTitle: true,
+      ),
       body: CustomScrollView(
         slivers: [
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) => ListTile(title: Text('Item $index')),
+              childCount: 3,
+            ),
+          ),
           SliverFillRemaining(
             hasScrollBody: false,
-            child: Center(
-              child: Text(
-                'This fills the remaining space!',
-                style: Theme.of(context).textTheme.headlineMedium,
+            child: Container(
+              color: Colors.lightBlueAccent.withValues(),
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      'This area fills the remaining space!',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

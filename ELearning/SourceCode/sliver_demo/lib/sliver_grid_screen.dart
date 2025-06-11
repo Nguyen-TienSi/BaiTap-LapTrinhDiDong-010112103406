@@ -6,7 +6,10 @@ class SliverGridScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Sliver Grid Example')),
+      appBar: AppBar(
+        title: const Text('Sliver Grid Example'),
+        centerTitle: true,
+      ),
       body: CustomScrollView(
         slivers: [
           SliverGrid(
@@ -17,7 +20,7 @@ class SliverGridScreen extends StatelessWidget {
               childAspectRatio: 1,
             ),
             delegate: SliverChildBuilderDelegate(
-                  (context, index) => Container(
+              (context, index) => Container(
                 color: Colors.primaries[index % Colors.primaries.length],
                 child: Center(
                   child: Text(
